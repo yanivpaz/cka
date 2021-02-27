@@ -61,3 +61,4 @@ You can verify that the load balancer is working like so:
 
 curl -k https://localhost:6443/version
 You should get back some json containing version information for your Kubernetes cluster.
+
