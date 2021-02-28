@@ -1,4 +1,14 @@
 # tips 
+## get use and group
+```
+kubectl config view --raw -o jsonpath='{users[*].user.client-certification-data }' | base64 --decode > admin.crt
+
+openssl x509 -in admin.crt -text -noout | head
+```
+output :
+CN - user
+O - group memebership
+
 
 ## Connection phases
 connection 
