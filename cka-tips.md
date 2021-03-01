@@ -28,6 +28,11 @@ Creation
 Running 
 Termination 
 
+
+## run as 
+kubectl get pods -n web   --as=system:serviceaccount:web:webautomation
+
+
 ## pods removal
 1. api grace period timer - 30 second
 2. pods change to terminate
