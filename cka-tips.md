@@ -1,4 +1,9 @@
 # tips 
+## enable pods on the control plan
+```
+kubectl taint nodes --all node-role.kubernetes.io/master-
+```
+
 ## get use and group
 ```
 kubectl config view --raw -o jsonpath='{users[*].user.client-certification-data }' | base64 --decode > admin.crt
