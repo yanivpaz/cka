@@ -21,8 +21,7 @@ spec:
 ```
 
 ## NetworkPolicy that blocks all traffic to and from mypod in mynamespace 
-
-option 1
+### option 1
 ```
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -35,9 +34,10 @@ spec:
       app: mypod
   ingress: {}
   egress: {}
+```
 
-
-option 2:
+### option 2
+```
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
