@@ -1,4 +1,9 @@
 # tips 
+## list of installed packages
+```
+ dpkg -l |wc -l  OR  apt list --installed
+```
+
 ## enable pods on the control plan
 ```
 kubectl taint nodes --all node-role.kubernetes.io/master-
