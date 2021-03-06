@@ -8,8 +8,8 @@ kubectl create serviceaccount sareadonlyuser
 kubectl create clusterrole readonlyuserrole --verb=get --verb=list --verb=watch --resource=pods
 kubectl create clusterrolebinding readonlyuserclusterrolebinding --serviceaccount=default:sareadonlyuser --clusterrole=readonlyuserrole 
 TOKEN=$(kubectl describe secrets "$(kubectl describe serviceaccount sareadonlyuser | grep -i Tokens | awk '{print $2}')" | grep token: | awk '{print $2}')
-kubectl config set-credentials sareadonlyuser --token=$TOKEN
-kubectl config set-context sareadercontext --cluster=kubernetes --user=sareadonlyuser
+kubectl config set-credentials mycred --token=$TOKEN
+kubectl config set-context sareadercontext --cluster=kubernetes --user=mycred
 kubectl config use-context sareadercontext
 ```
 https://stackoverflow.com/questions/44948483/create-user-in-kubernetes-for-kubectl
