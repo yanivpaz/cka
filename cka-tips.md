@@ -48,3 +48,18 @@ kubectl get pods -n web   --as=system:serviceaccount:web:webautomation
 
 --grace-period=30
 --force : remove immediatly 
+
+
+## svc domain 
+```
+# Working 
+curl my-service:8000
+curl my-service.default:8000
+curl my-service.default.svc.cluster.local:8000
+
+# Not working
+curl my-service.default.svc:8000
+curl: (6) Couldn't resolve host 'my-service.default.svc'
+curl my-service.default.svc.cluster:8000
+curl: (6) Couldn't resolve host 'my-service.default.svc.cluster'
+```
