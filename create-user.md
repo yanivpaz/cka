@@ -35,9 +35,44 @@ kubectl config use-context employee-context
 https://docs.bitnami.com/tutorials/configure-rbac-in-your-kubernetes-cluster/#use-case-1-create-user-with-limited-namespace-access
 
 
-#  test
+##  test
 ```
 kubectl get pods -A
 # ensure you get no
 kubectl auth can-i create pods
+```
+
+
+## The kube config will eventually be like 
+```
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data:
+    server: https://10.0.1.101:6443
+  name: kubernetes
+users:
+- name: employee
+  user:
+    client-certificate: /home/cloud_user/employee.crt
+    client-key: /home/cloud_user/employee.key
+- name: mycred
+  user:
+    token: eyJhbGciOiJSUzI1NiIsImtpZCI6Ik1DdERmcDQ1VEFtcWFGYVFPV0l
+contexts:
+- context:
+    cluster: kubernetes
+    user: employee
+  name: employee-context
+- context:
+    cluster: kubernetes
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+- context:
+    cluster: kubernetes
+    user: mycred
+  name: sareadercontext
+current-context: employee-context
+kind: Config
+preferences: {}
 ```
