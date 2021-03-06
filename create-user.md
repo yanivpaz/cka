@@ -19,14 +19,25 @@ https://stackoverflow.com/questions/44948483/create-user-in-kubernetes-for-kubec
 ## with certificate 
 ```
 openssl genrsa -out employee.key 2048
-openssl req -new -key employee.key -out employee.csr -subj "/CN=employee/O=bitnami"
+openssl req -new -key employee.key -out employee.csr -subj "/CN=employee/O=paz"
 
 # on master 
 cd /etc/kubernetes/pki
-
+# copy csr employee.csr 
 openssl x509 -req -in employee.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out employee.crt -days 500
-kubectl config set-credentials employee --client-certificate=/home/employee/.certs/employee.crt  --client-key=/home/employee/.certs/employee.key
-kubectl config set-context employee-context --cluster=minikube --namespace=office --user=employee
+
+kubectl create clusterrolebinding readonlyuserclusterrolebinding2 --clusterrole=readonlyuserrole
+kubectl config set-credentials employee --client-certificate=employee.crt  --client-key=employee.key
+kubectl config set-context employee-context --cluster=kubernetes --user=employee
+kubectl config use-context employee-context
 ```
 
 https://docs.bitnami.com/tutorials/configure-rbac-in-your-kubernetes-cluster/#use-case-1-create-user-with-limited-namespace-access
+
+
+#  test
+```
+kubectl get pods -A
+# ensure you get no
+kubectl auth can-i create pods
+```
