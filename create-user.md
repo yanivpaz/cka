@@ -26,7 +26,7 @@ cd /etc/kubernetes/pki
 # copy csr employee.csr 
 openssl x509 -req -in employee.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out employee.crt -days 500
 
-kubectl create clusterrolebinding readonlyuserclusterrolebinding2 --clusterrole=readonlyuserrole
+kubectl create clusterrolebinding readonlyuserclusterrolebinding2 --clusterrole=readonlyuserrole --user=employee --group=paz
 kubectl config set-credentials employee --client-certificate=employee.crt  --client-key=employee.key
 kubectl config set-context employee-context --cluster=kubernetes --user=employee
 kubectl config use-context employee-context
