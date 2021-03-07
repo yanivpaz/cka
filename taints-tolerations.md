@@ -1,4 +1,7 @@
 # Example
+## Links
+https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
+
 
 ## Taints nodes 
 ```
@@ -62,6 +65,31 @@ spec:
   tolerations:
   - key: mykey
     effect: NoSchedule
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod5
+spec:
+  containers:
+  - image: nginx
+    name: mypod5
+  tolerations:
+  - key: mykey
+    operator: "Exists"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod6
+spec:
+  containers:
+  - image: nginx
+    name: mypod6
+  tolerations:
+  - key: mykey
+    effect: NoSchedule
+    operator: "Exists"
 ```
 
 
@@ -71,8 +99,10 @@ kubectl get pods -A | grep -i mypod
 ```
 Results:
 ```
-default       mypod1                                 1/1     Running   0          48s
-default       mypod2                                 1/1     Running   0          47s
-default       mypod3                                 1/1     Running   0          44s
-default       mypod4                                 0/1     Pending   0          21s
+default       mypod1                                 1/1     Running   0          9m28s
+default       mypod2                                 1/1     Running   0          9m27s
+default       mypod3                                 1/1     Running   0          9m24s
+default       mypod4                                 0/1     Pending   0          9m1s
+default       mypod5                                 1/1     Running   0          10s
+default       mypod6                                 1/1     Running   0          12s
 ``
