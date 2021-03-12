@@ -1,4 +1,4 @@
-# tips 
+# Practice tips
 ## list of installed packages
 ```
  dpkg -l |wc -l  OR  apt list --installed
@@ -67,4 +67,9 @@ curl my-service.default.svc:8000
 curl: (6) Couldn't resolve host 'my-service.default.svc'
 curl my-service.default.svc.cluster:8000
 curl: (6) Couldn't resolve host 'my-service.default.svc.cluster'
+```
+
+## Additional tips 
+```
+https://gist.github.com/so0k/42313dbb3b547a0f51a547bb968696ba
 ```
