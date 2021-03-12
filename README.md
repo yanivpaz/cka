@@ -1,4 +1,4 @@
-# access to jkubernetes
+# access to kubernetes
 
 * Extract all crt and keys from kubeconfig
 * Run the following command 
