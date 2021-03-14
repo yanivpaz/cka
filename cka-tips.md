@@ -54,6 +54,11 @@ kubectl get pods -n web   --as=system:serviceaccount:web:webautomation
 --grace-period=30
 --force : remove immediatly 
 
+## expose to specific node port 
+``
+k expose --type=NodePort deployment nginx --port 80 --name nginx-ep-patch  --overrides '{ "apiVersion": "v1","spec":{"ports": [{"port":80,"protocol":"TCP","targetPort":80,"nodePort":30080}]}}'
+```
+
 
 ## svc domain 
 ```
